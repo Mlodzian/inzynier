@@ -1,10 +1,9 @@
 import com.rapidminer.Process;
 import com.rapidminer.example.Attribute;
+import com.rapidminer.example.AttributeRole;
 import com.rapidminer.example.Example;
 import com.rapidminer.example.ExampleSet;
-import com.rapidminer.example.table.AttributeFactory;
-import com.rapidminer.example.table.DoubleArrayDataRow;
-import com.rapidminer.example.table.MemoryExampleTable;
+import com.rapidminer.example.table.*;
 import com.rapidminer.operator.IOContainer;
 import com.rapidminer.operator.OperatorException;
 import com.rapidminer.repository.MalformedRepositoryLocationException;
@@ -24,55 +23,16 @@ public final class RapidMinerFunctions {
 
     private RapidMinerFunctions(){}
 
-    public static double dodajDziesieciPi(double a){
-        return a + 10 + Math.PI;
-    }
-
-    public static double sredniaZTablicy(double... a){
-        double sr=0;
-        for (double d:a){
-            sr+=d;
-        }
-        return sr/(a.length);
-    }
-
-    public static String dodajNapis(String a){
-        StringBuilder sb = new StringBuilder(a);
-        sb.append("Naspis Z JAVA!");
-        System.out.println(sb);
-        return sb.toString();
-    }
-
-    public static double sredniaDodajLiczbeiWyswietlNapis(double b, String s, double... a){
-        double ret = sredniaZTablicy(a);
-        ret += b;
-        System.out.println(">JAVA< + " + s);
-        return  ret;
-    }
-
-    public static double defineIris(double... data){
-        createExampleSet(data);
-        double ret = sredniaZTablicy(data);
-        System.out.println("Definiowanie gatunku Irysa... " + data);
-        return  ret;
-    }
-
     private static  ExampleSet createExampleSet(double[] data) {
         // create attribute list
         int liczba = 10; //Liczba danych do wczytania
-        //Tworzymy listê kolumn
-        List<Attribute> attributes = new LinkedList();
-        //Okreœlamy dla ka¿dej kolumny jej nazwê i typ danych
+        //Tworzymy listï¿½ kolumn
+        List<Attribute> attributes = new LinkedList<>();
+        //Okreï¿½lamy dla kaï¿½dej kolumny jej nazwï¿½ i typ danych
         attributes.add(AttributeFactory.createAttribute("a1", Ontology.REAL));
         attributes.add(AttributeFactory.createAttribute("a2", Ontology.REAL));
         attributes.add(AttributeFactory.createAttribute("a3", Ontology.REAL));
         attributes.add(AttributeFactory.createAttribute("a4", Ontology.REAL));
-
-        //Tworzymy mapê - wartoœæ->symbol
-        Map<Integer, String> map = new HashMap<Integer, String>();
-        map.put(0, "Iris-setosa1231312");
-        map.put(1, "Iris-versicolor123123");
-        map.put(2, "Iris-virginica123123");
 
         //Tworzymy tabele danych
         MemoryExampleTable table = new MemoryExampleTable(attributes);
@@ -83,33 +43,32 @@ public final class RapidMinerFunctions {
         return exampleSet;
     }
 
-    public static void dobierzIrysa(double... data) {
-
-        // UWAGA te polecenia uruchamiamy tylko raz dla ca³ej sesji */
-        com.rapidminer.RapidMiner.setExecutionMode(com.rapidminer.RapidMiner.ExecutionMode.COMMAND_LINE);
-        com.rapidminer.RapidMiner.init();
-        //W³aœciwe odpalenie procesu
+    public static Object[][] dobierzIrysa(double... data) {
+        Object[] result = new Object[8];
+        //Wï¿½aï¿½ciwe odpalenie procesu
         try {
             File f = new File("processes/" + "iris2.xml"); //Przygotowanie pliku z procesem
             com.rapidminer.Process myProcess = new Process(f);//Wczytanie procesu
 
-            ExampleSet es = createExampleSet(data);; //Stworzenie zbioru danych
-            IOContainer ioInput = new IOContainer(es); //Okreœlenie danych wejœciowych do procesu
-            //Uruchomienie procesu, wyniki s¹ zapisywane do IOContainer
+            ExampleSet es = createExampleSet(data); //Stworzenie zbioru danych
+            IOContainer ioInput = new IOContainer(es); //Okreï¿½lenie danych wejï¿½ciowych do procesu
+            //Uruchomienie procesu, wyniki sï¿½ zapisywane do IOContainer
             IOContainer ioResult = myProcess.run(ioInput);
 
-            ExampleSet resultExample = ioResult.get(ExampleSet.class);//Odczytujemy wynik z pierwszego wyjœcia
-            Iterator iteratorEx = resultExample.getAttributes().allAttributes();
-
+            ExampleSet resultExample = ioResult.get(ExampleSet.class);//Odczytujemy wynik z pierwszego wyjï¿½cia
+            resultExample.getAttributes().clearRegular();
+            Iterator<Attribute> iteratorEx = resultExample.getAttributes().allAttributes();
+            int indexOfArray = 0;
             while (iteratorEx.hasNext()){
-                Attribute atr = (Attribute) iteratorEx.next();
+                Attribute atr = iteratorEx.next();
                 System.out.println(atr.toString() + ": ");
-
                 for (Example e : resultExample) {
                     if (atr.isNumerical()) {
-                        System.out.print(String.format(atr.getName() + ": " + "%4.2f \n", e.getValue(atr))); //Odczytujemy wartoœc i wyœwietlamy jako liczbê
+                        result[indexOfArray++] = e.getValue(atr);
+                        System.out.print(String.format(atr.getName() + ": " + "%4.2f \n", e.getValue(atr))); //Odczytujemy wartoï¿½c i wyï¿½wietlamy jako liczbï¿½
                     } else {
-                        System.out.println(e.getValueAsString(atr)); //Odczytujemy wartoœc i wyœwietlamy jako liczbê
+                        result[indexOfArray++] = e.getValueAsString(atr);
+                        System.out.println(e.getValueAsString(atr)); //Odczytujemy wartoï¿½c i wyï¿½wietlamy jako liczbï¿½
                     }
                 }
             }
@@ -123,6 +82,9 @@ public final class RapidMinerFunctions {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        Object[][] formatArray = {result};
+        return formatArray;
     }
 
 }
