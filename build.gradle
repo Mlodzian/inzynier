@@ -33,11 +33,11 @@ dependencies {
     // OS X adapter to add platform specific UI
     compile 'com.rapidminer.studio:rapidminer-studio-osx-adapter:1.0.1'
 
-    // RapidMinerFunctions license framework for license management
+    // pl.micw.ExcelExtension.RapidMinerFunctions666 license framework for license management
     compile 'com.rapidminer.license:rapidminer-license-api:3.1.0'
     compile 'com.rapidminer.license:rapidminer-license-commons:3.1.0'
 
-    // RapidMinerFunctions API
+    // pl.micw.ExcelExtension.RapidMinerFunctions666 API
     compile 'com.rapidminer:rapidminer-api:0.1.1'
 
     // VLDocking as docking framework (https://code.google.com/p/vldocking/)
@@ -121,7 +121,7 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.12'
 
     // add testing suite
-    //TODO should be test compile but RapidMinerFunctions src/main contains code that references JUnit
+    //TODO should be test compile but pl.micw.ExcelExtension.RapidMinerFunctions666 src/main contains code that references JUnit
     compile 'junit:junit:4.12'
 
     // JGraphx for automatic operator arrangement (https://github.com/jgraph/jgraphx)

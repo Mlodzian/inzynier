@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="pl.micw.ExcelExtension.GUI.RootForm">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="3" left="3" bottom="3" right="3"/>
+    <constraints>
+      <xy x="20" y="20" width="558" height="417"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="41863" binding="processesPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="400" height="150"/>
+            <maximum-size width="420" height="150"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none" title="processes:"/>
+        <children>
+          <component id="56ec2" class="javax.swing.JList" binding="processes">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="50"/>
+                <maximum-size width="150" height="50"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-8156529"/>
+              <model/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="f326d" binding="descriptionPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="200" height="100"/>
+            <maximum-size width="420" height="180"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none" title="description"/>
+        <children>
+          <component id="cf790" class="javax.swing.JTextPane" binding="firstRunExcellSheetTextPane" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="1" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="410" height="50"/>
+                <preferred-size width="410" height="90"/>
+                <maximum-size width="410" height="90"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1315861"/>
+              <editable value="false"/>
+              <font name="Calibri" size="14"/>
+              <text value="     First run Excell sheet, and open XLLoop plugin (default named &quot;xlloop-0.3.2&quot;). To add new functionality to MS Excel click &quot;Add new Process&quot;, write process name and set atributes, then select XML or RMP proces genereted in RapidMiner.&#10;     Use new UDF by command:"/>
+            </properties>
+          </component>
+          <component id="90b53" class="javax.swing.JLabel" binding="command">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font size="14" style="3"/>
+              <text value="=RapidMinerUDF.run(&quot;PROCESS NAME&quot;; CELL_X:CELL_Y)"/>
+              <verticalAlignment value="1"/>
+              <verticalTextPosition value="1"/>
+            </properties>
+          </component>
+          <vspacer id="aff51">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+        </children>
+      </grid>
+      <grid id="98df2" binding="butttonPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="3" left="3" bottom="3" right="3"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <maximum-size width="420" height="60"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="22162" class="javax.swing.JButton" binding="addNewProcessButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <maximum-size width="397" height="50"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="Add new Process"/>
+            </properties>
+          </component>
+          <component id="f3604" class="javax.swing.JButton" binding="removeProcessButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Remove Process"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
