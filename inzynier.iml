@@ -80,8 +80,8 @@
     <orderEntry type="library" name="Gradle: stax:stax-api:1.0.1" level="project" />
     <orderEntry type="library" name="Gradle: concurrent:concurrent:1.3.4" level="project" />
     <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.5" level="project" />
-    <orderEntry type="library" name="Gradle: com.rapidminer.core:rapidminer-studio-core:6.5.2" level="project" />
     <orderEntry type="library" name="Gradle: org.boris.xlloop:xlloop:0.3.2" level="project" />
+    <orderEntry type="library" name="Gradle: com.rapidminer.core:rapidminer-studio-core:6.5.2" level="project" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">

@@ -22,7 +22,7 @@ public class PolynominalAtribute extends JPanel {
 
     public PolynominalAtribute() {
 
-        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Write binominals:"));
+        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "write polynominals:"));
         panelOfPolynominals.add(Box.createRigidArea(new Dimension(80, 3)));
 
         panelOfPolynominals.setLayout(new BoxLayout(panelOfPolynominals, 1));

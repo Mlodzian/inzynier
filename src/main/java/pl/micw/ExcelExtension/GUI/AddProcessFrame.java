@@ -5,11 +5,22 @@ import pl.micw.ExcelExtension.AttributeColumn;
 import pl.micw.ExcelExtension.GeneratedProcess;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -35,15 +46,15 @@ public class AddProcessFrame extends JFrame {
     private JTextField processNameField;
     private JScrollPane atributeScroll;
     private JScrollPane scrollPane;
-    public List<AddedAttribute> attributes;
-    public static AddProcessFrame addProcesFrame;
-    public Path processPath;
-    List<AttributeColumn> atributeColumns = new ArrayList<>();
-    int quantity;
-    int atributeId;
-    Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-    final int FORM_WIDTH = 700;
-    final int FORM_HEIGHT = 390;
+    private List<AddedAttribute> attributes;
+    private static AddProcessFrame addProcesFrame;
+    private Path processPath;
+    private List<AttributeColumn> atributeColumns = new ArrayList<>();
+    private int quantity;
+    private int atributeId;
+    private Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+    private static final int FORM_WIDTH = 700;
+    private static final int FORM_HEIGHT = 410;
     private String processName;
     private GeneratedProcess generatedRapidminerProcess;
 
@@ -65,12 +76,14 @@ public class AddProcessFrame extends JFrame {
         setContentPane(addProcessPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.setBounds(dim.width / 2 - FORM_WIDTH / 2, dim.height / 2 - FORM_HEIGHT / 2, FORM_WIDTH, FORM_HEIGHT);
+        this.setBounds(dim.width / 2 - FORM_WIDTH / 2,
+                dim.height / 2 - FORM_HEIGHT / 2, FORM_WIDTH, FORM_HEIGHT);
         this.setMinimumSize(new Dimension(FORM_WIDTH, FORM_HEIGHT));
 
         panelOfAtributes.setVisible(true);
         middlePanel.setLayout(new BorderLayout());
-        middlePanel.add(scrollPane = new JScrollPane(panelOfAtributes));
+        scrollPane = new JScrollPane(panelOfAtributes);
+        middlePanel.add(scrollPane);
         panelOfAtributes.setLayout(new FlowLayout(FlowLayout.CENTER));
         scrollPane.setVisible(true);
 
@@ -87,18 +100,18 @@ public class AddProcessFrame extends JFrame {
 
         processNameField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
-            public void insertUpdate(DocumentEvent e) {
-                processName=processNameField.getText();
+            public void insertUpdate(final DocumentEvent e) {
+                processName = processNameField.getText();
             }
 
             @Override
-            public void removeUpdate(DocumentEvent e) {
-                processName=processNameField.getText();
+            public void removeUpdate(final DocumentEvent e) {
+                processName = processNameField.getText();
             }
 
             @Override
-            public void changedUpdate(DocumentEvent e) {
-                processName=processNameField.getText();
+            public void changedUpdate(final DocumentEvent e) {
+                processName = processNameField.getText();
             }
         });
 
@@ -115,36 +128,41 @@ public class AddProcessFrame extends JFrame {
             chooser.setFileFilter(filter);
             int returnVal = chooser.showOpenDialog(addProcesFrame);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
-                processPath = FileSystems.getDefault().getPath(chooser.getSelectedFile().getAbsolutePath());
+                processPath = FileSystems.getDefault().getPath(
+                        chooser.getSelectedFile().getAbsolutePath());
                 pathInfoLabel.setText("Selected: \"" + processPath.toString() + "\"");
             }
         });
 
 
         addProcessButton.addActionListener(e -> {
-            if(processNameField.getText().equals("") || atributeColumns.size()==0) {
-                JOptionPane.showMessageDialog(null, "Please add attributes, process path and name", "Fill data...", JOptionPane.PLAIN_MESSAGE);
-            }else {
+            if (processNameField.getText().equals("")
+                    || atributeColumns.size() == 0 || processPath == null) {
+                JOptionPane.showMessageDialog(null, "Please add attributes, process path and name",
+                        "Fill data...", JOptionPane.PLAIN_MESSAGE);
+            } else {
                 for (int index = 0; index < atributeColumns.size(); index++) {
                     AttributeColumn atr = atributeColumns.get(index);
-                    attributes.add(new AddedAttribute(atr.getAtrName(), atr.getOntologyType(), atr.getFields()));
+                    attributes.add(new AddedAttribute(atr.getAtrName(),
+                            atr.getOntologyType(), atr.getFields()));
                 }
-                if(!RootForm.AddRapidminerProcess(new GeneratedProcess(processName, attributes, processPath))){
-                    JOptionPane.showMessageDialog(null, "Process with this name already exist! Please rename process name. ",
+                if (!RootFrame.addRapidminerProcess(new GeneratedProcess(
+                        processName, attributes, processPath))) {
+                    JOptionPane.showMessageDialog(null,
+                            "Process with this name already exist! Please rename process name. ",
                             "Dupicated process name", JOptionPane.PLAIN_MESSAGE);
-                }
-                else {
+                } else {
                     this.dispose();
                 }
             }
         });
     }
 
-    public static AddProcessFrame getAddProcessFrame(){
+    public static AddProcessFrame getAddProcessFrame() {
         return addProcesFrame;
     }
 
-    public void deleteAtribute(int index) {
+    public final void deleteAtribute(final int index) {
         atributeColumns.get(index).setVisible(false);
         atributeColumns.remove(index);
         updateIndexesOfAtributes();
@@ -153,13 +171,10 @@ public class AddProcessFrame extends JFrame {
         --quantity;
     }
 
-    public void updateIndexesOfAtributes() {
+    public final void updateIndexesOfAtributes() {
         for (int index = 0; index < atributeColumns.size(); index++) {
             atributeColumns.get(index).updateIndex(index);
         }
     }
 
-    public GeneratedProcess getGeneratedRapidminerProcess() {
-        return generatedRapidminerProcess;
-    }
 }

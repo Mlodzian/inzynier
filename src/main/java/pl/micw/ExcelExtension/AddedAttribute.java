@@ -12,10 +12,10 @@ public class AddedAttribute {
     private Map<Integer, String> atributeTypes;
 
 
-    public AddedAttribute(String name, OntologyTypes ontology, Map atributeTypes){
-        this.atributeTypes=atributeTypes;
-        this.name=name;
-        this.ontology=ontology;
+    public AddedAttribute(String name, OntologyTypes ontology, Map atributeTypes) {
+        this.atributeTypes = atributeTypes;
+        this.name = name;
+        this.ontology = ontology;
     }
 
     public String getName() {

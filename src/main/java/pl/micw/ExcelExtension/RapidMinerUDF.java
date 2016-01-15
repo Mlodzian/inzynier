@@ -12,28 +12,16 @@ import com.rapidminer.repository.MalformedRepositoryLocationException;
 import com.rapidminer.tools.Ontology;
 import com.rapidminer.tools.XMLException;
 import org.boris.xlloop.reflect.XLFunction;
-import pl.micw.ExcelExtension.GUI.RootForm;
+import pl.micw.ExcelExtension.GUI.RootFrame;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-/**
- * class-conatiner with static methods.
- * @implNote Only method "run" is implemented to Excel UDF, but it is generic method
- * witch means that user can add many process using this.
- */
 
 public final class RapidMinerUDF {
 
     private static List<GeneratedProcess> processes = new ArrayList<>();
-
-    @XLFunction(name = "RapidMinerUDF.run",
-            help = "List the files contained within a directory",
-            args = { "dir" },
-            argHelp = { "The directory" },
-            category = "Files")
-
 
     private static ExampleSet createExampleSet(GeneratedProcess generatedProcess, double[] data) {
 
@@ -60,7 +48,7 @@ public final class RapidMinerUDF {
 
     private static GeneratedProcess selectProcess(String name){
         GeneratedProcess process = null;
-        processes = RootForm.getRapidminerProcesses();
+        processes = RootFrame.getRapidminerProcesses();
         for (GeneratedProcess generatedProcess: processes){
             if(generatedProcess.getProcessName().equals(name)){
                 return generatedProcess;
@@ -71,7 +59,6 @@ public final class RapidMinerUDF {
 
     public static Object[][] run(String name, double... data){
         Object[] result = new Object[10];
-       // init();
         GeneratedProcess generatedProcess = selectProcess(name);
         File processFile = new File(generatedProcess.getPathToProcess().toUri());
         try{

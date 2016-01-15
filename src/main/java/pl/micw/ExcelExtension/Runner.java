@@ -6,10 +6,7 @@ import org.boris.xlloop.handler.CompositeFunctionHandler;
 import org.boris.xlloop.handler.DebugFunctionHandler;
 import org.boris.xlloop.handler.FunctionInformationHandler;
 import org.boris.xlloop.reflect.ReflectFunctionHandler;
-import org.boris.xlloop.reflect.XLFunction;
-import pl.micw.ExcelExtension.GUI.RootForm;
-
-import java.io.File;
+import pl.micw.ExcelExtension.GUI.RootFrame;
 
 /**
  * Runner class with 2 threads.
@@ -22,7 +19,7 @@ public class Runner {
     public static void main(String[] args) throws Exception {
 
         Runnable guiForm = () ->{
-            RootForm rootForm = new RootForm();
+            RootFrame rootForm = new RootFrame();
         };
 
         FunctionServer fs = new FunctionServer();

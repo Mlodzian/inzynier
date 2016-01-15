@@ -19,7 +19,7 @@ repositories {
     jcenter()
     maven { url 'https://maven.rapidminer.com/content/groups/public/' }
     flatDir {
-        dirs 'liby'
+        dirs 'libs'
     }
 }
 

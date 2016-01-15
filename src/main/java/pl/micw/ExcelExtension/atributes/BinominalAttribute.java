@@ -27,7 +27,7 @@ public class BinominalAttribute extends JPanel {
         this.setVisible(false);
         this.setSize(180, 180);
         this.setLayout(new BoxLayout(this, 1));
-        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Write binominals:"));
+        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "write binominals:"));
         this.add(firstField = new JTextField("true"));
         this.add(Box.createRigidArea(new Dimension(120, 2)));
         this.add(secondField = new JTextField("false"));

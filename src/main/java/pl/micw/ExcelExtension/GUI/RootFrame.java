@@ -3,8 +3,21 @@ package pl.micw.ExcelExtension.GUI;
 import pl.micw.ExcelExtension.GeneratedProcess;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -17,7 +30,7 @@ import java.util.Set;
 /**
  * Main JFrame form.
  */
-public class RootForm extends JFrame {
+public class RootFrame extends JFrame {
 
     private JPanel rootPanel;
     private DefaultListModel defaultListModel = new DefaultListModel();
@@ -25,20 +38,28 @@ public class RootForm extends JFrame {
     private JScrollPane scrollPane = new JScrollPane(processes);
     private JPanel processesPanel;
     private JPanel descriptionPanel;
-    private JTextPane firstRunExcellSheetTextPane;
     private JButton addNewProcessButton;
     private JPanel butttonPanel;
     private JButton removeProcessButton;
-    private JLabel command;
-    volatile private static List<GeneratedProcess> rapidminerProcesses = new ArrayList<>();
-    private final int WIDTH = 450;
-    private final int HEIGHT = 400;
+    private JTextPane descriptionTextPane;
+    private JTextPane command;
+    private static List<GeneratedProcess> rapidminerProcesses = new ArrayList<>();
+    private static final int WIDTH = 450;
+    private static final int HEIGHT = 400;
+    private static final int LIST_WIDTH = 350;
+    private static final int LIST_HEIGHT = 100;
     private int selectedIndex = -1;
-
     private static Set<String> processNames = new HashSet<>();
 
-    public RootForm() {
+    public RootFrame() {
         super("Excel extension");
+
+        SimpleAttributeSet sa = new SimpleAttributeSet();
+        StyleConstants.setAlignment(sa, StyleConstants.ALIGN_JUSTIFIED);
+
+        descriptionTextPane.setOpaque(false);
+        command.setOpaque(false);
+        descriptionTextPane.getStyledDocument().setParagraphAttributes(0,LIST_WIDTH,sa,false);
 
         try {
             this.setIconImage(ImageIO.read(new File("resources/excel.png")));
@@ -49,7 +70,8 @@ public class RootForm extends JFrame {
         this.setContentPane(rootPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setBounds(dim.width / 2 - this.getSize().width - 450 / 2, dim.height / 2 - this.getSize().height - 400 / 2, WIDTH, HEIGHT);
+        this.setBounds(dim.width / 2 - this.getSize().width - WIDTH / 2,
+                dim.height / 2 - this.getSize().height - HEIGHT / 2, WIDTH, HEIGHT);
         this.setVisible(true);
 
         processes.setModel(defaultListModel);
@@ -58,12 +80,12 @@ public class RootForm extends JFrame {
 
         this.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseEntered(MouseEvent e) {
+            public void mouseEntered(final MouseEvent e) {
                 refreshList();
             }
 
             @Override
-            public void mouseMoved(MouseEvent e) {
+            public void mouseMoved(final MouseEvent e) {
                 refreshList();
             }
         });
@@ -81,31 +103,30 @@ public class RootForm extends JFrame {
 
         processes.addMouseListener(new MouseAdapter() {
                                        @Override
-                                       public void mouseReleased(MouseEvent e) {
+                                       public void mouseReleased(final MouseEvent e) {
                                            selectedIndex = processes.getSelectedIndex();
                                        }
                                    }
         );
-
-        processes.setMaximumSize(new Dimension(WIDTH-90, 100));
-        processes.setPreferredSize(new Dimension(WIDTH-90, 100));
-
+        processes.setMaximumSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
+        processes.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
         this.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseEntered(MouseEvent e) {
-                if(selectedIndex != -1) {
+            public void mouseEntered(final MouseEvent e) {
+                if (selectedIndex != -1) {
                     processes.setSelectedIndex(selectedIndex);
                 }
             }
         });
 
         processesPanel.setLayout(new BorderLayout());
-        processesPanel.add(scrollPane = new JScrollPane(processes));
+        scrollPane = new JScrollPane(processes);
+        processesPanel.add(scrollPane);
         refreshList();
 
     }
 
-    public static boolean checkProcessNames(String name){
+    public static boolean checkProcessNames(final String name) {
         return processNames.add(name);
     }
 
@@ -113,23 +134,24 @@ public class RootForm extends JFrame {
         return rapidminerProcesses;
     }
 
-    public static boolean AddRapidminerProcess(GeneratedProcess rp) {
-        if(checkProcessNames(rp.getProcessName())) {
+    public static boolean addRapidminerProcess(final GeneratedProcess rp) {
+        if (checkProcessNames(rp.getProcessName())) {
             rapidminerProcesses.add(rp);
             System.out.println(rp);
             return true;
-        }
-        else
+        } else {
             return false;
+        }
     }
 
-    public void removeProcess(int index) {
+    public final void removeProcess(final int index) {
         if (selectedIndex == -1) {
-            JOptionPane.showMessageDialog(null, "Please choose correct process!", "Removing...", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please choose correct process!",
+                    "Removing...", JOptionPane.PLAIN_MESSAGE);
         } else {
-            defaultListModel.remove(index);
+            processNames.remove(defaultListModel.remove(index));
             rapidminerProcesses.remove(index);
-            selectedIndex=-1;
+            selectedIndex = -1;
         }
     }
 

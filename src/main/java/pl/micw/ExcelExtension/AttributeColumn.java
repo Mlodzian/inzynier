@@ -4,10 +4,17 @@ import pl.micw.ExcelExtension.GUI.AddProcessFrame;
 import pl.micw.ExcelExtension.atributes.BinominalAttribute;
 import pl.micw.ExcelExtension.atributes.PolynominalAtribute;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.Map;
 
