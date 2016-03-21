@@ -6,7 +6,6 @@ import org.boris.xlloop.handler.CompositeFunctionHandler;
 import org.boris.xlloop.handler.DebugFunctionHandler;
 import org.boris.xlloop.handler.FunctionInformationHandler;
 import org.boris.xlloop.reflect.ReflectFunctionHandler;
-import org.springframework.asm.SpringAsmInfo;
 import pl.micw.ExcelExtension.GUI.RootFrame;
 
 /**
