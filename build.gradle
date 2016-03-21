@@ -25,6 +25,8 @@ repositories {
 
 dependencies {
 
+    compile'org.springframework:spring-webmvc:4.2.5.RELEASE'
+
     compile 'org.boris.xlloop:xlloop:0.3.+'
     testCompile("junit:junit:4.+")
     //compile 'com.rapidminer.core:rapidminer-studio-core:6.5.2';
