@@ -18,7 +18,7 @@ Excel nalezy wlaczyc dodatek w arkuszu o domyslnej nazwie "xlloop-0.3.2.xll" [Do
 
 info
 ----
-* autor: Michal Cwiekala
+* autor: Michał Ćwiękała
 * promotor: dr inż. Marcin Blachnik
 * e-mail: c.michal@o2.pl
 * data oficjalnego opubliokwania: 12.01.2016
