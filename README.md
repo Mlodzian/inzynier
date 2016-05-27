@@ -1,4 +1,4 @@
-Projekt inżynierski "Integracja Java z MS Excel" 12/01/2016
+Projekt inżynierski "Integracja Java z MS Excel"
 ====================================
 Politechnika Slaska
 Wydzial Inzynierii Materialowej i Metalurgii
@@ -14,10 +14,11 @@ Projekt realizowany na środowisku Microsoft Windows 7 i MS Excel 2007.
 Instalacja
 ----------
 Wymaga instalacji Java SE 1.8 i Gradle 2.10. Aby uzywac nowej funkcjonalnosci w MS
-Excel nalezy wlaczyc dodatek w arkuszu o domyslnej nazwie "xlloop-0.3.2.xll". [Dostępny na stronie projektu](http://xlloop.sourceforge.net/).
+Excel nalezy wlaczyc dodatek w arkuszu o domyslnej nazwie "xlloop-0.3.2.xll" [Dostępny na stronie projektu](http://xlloop.sourceforge.net/).
 
 
 ####################################
 autor: Michal Cwiekala
 e-mail: c.michal@o2.pl
+data oficjalnego opubliokwania: 12.01.2016
 ####################################
