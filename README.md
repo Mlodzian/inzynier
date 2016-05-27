@@ -1,7 +1,7 @@
-Projekt inżynierski "Integracja Java z MS Excel"
-====================================
-Politechnika Slaska
-Wydzial Inzynierii Materialowej i Metalurgii
+Integracja Java z MS Excel
+==========================
+
+Projekt inżynierski - Politechnika Slaska, Wydzial Inzynierii Materialowej i Metalurgii.
 
 Opis
 ----
@@ -21,4 +21,4 @@ Excel nalezy wlaczyc dodatek w arkuszu o domyslnej nazwie "xlloop-0.3.2.xll" [Do
 autor: Michal Cwiekala
 e-mail: c.michal@o2.pl
 data oficjalnego opubliokwania: 12.01.2016
-####################################
+ocena: 5
