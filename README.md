@@ -14,7 +14,7 @@ Projekt realizowany na środowisku Microsoft Windows 7 i MS Excel 2007.
 Instalacja
 ----------
 Wymaga instalacji Java SE 1.8 i Gradle 2.10. Aby używać nowej funkcjonalności w MS
-Excel należy włączyć dodatek w arkuszu o domyślnej nazwie "xlloop-0.3.2.xll" [dostępny na stronie projektu](http://xlloop.sourceforge.net/).
+Excel należy włączyć dodatek w arkuszu o domyślnej nazwie "xlloop-0.3.2.xll", w folderze "Excel_sheets" [(dostępny również na stronie)](http://xlloop.sourceforge.net/).
 
 Info
 ----
