@@ -16,8 +16,8 @@ Instalacja
 Wymaga instalacji Java SE 1.8 i Gradle 2.10. Aby uzywac nowej funkcjonalnosci w MS
 Excel nalezy wlaczyc dodatek w arkuszu o domyslnej nazwie "xlloop-0.3.2.xll" [Dostępny na stronie projektu](http://xlloop.sourceforge.net/).
 
-
-####################################
+info
+----
 autor: Michal Cwiekala
 e-mail: c.michal@o2.pl
 data oficjalnego opubliokwania: 12.01.2016
