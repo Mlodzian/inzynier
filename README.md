@@ -1,7 +1,7 @@
 Integracja Java z MS Excel
 ==========================
 
-Projekt inżynierski - Politechnika Slaska, Wydzial Inzynierii Materialowej i Metalurgii.
+Projekt inżynierski - Politechnika Śląska, Wydział Inżynierii Materiałowej i Metalurgii.
 
 Opis
 ----
