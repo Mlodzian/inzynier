@@ -5,7 +5,7 @@ Projekt inżynierski - Politechnika Śląska, Wydział Inżynierii Materiałowej
 
 Opis
 ----
-Program umożliwa rozszerzenie arkusza kalkulacyjnego Excel o nowe funkcjonalności utworzone i wyeksportowane w programie RapidMiner (np. sieci neuronowe, predykcja, algorytny, analiza danych). Program wykorzystuje rozbudowane i przyjazne dla użytkownika GUI. Polecenia w programie Excel wykonywane są online, przy uruchomionym programie w tle.
+Program umożliwa rozszerzenie arkusza kalkulacyjnego Excel o nowe funkcjonalności utworzone i wyeksportowane w programie RapidMiner (np. sieci neuronowe, predykcja, algorytmy, analiza danych). Program wykorzystuje rozbudowane i przyjazne dla użytkownika GUI. Polecenia w programie Excel wykonywane są online, przy uruchomionym programie w tle.
 
 Użytkowanie
 -----------
